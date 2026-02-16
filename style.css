@@ -824,6 +824,19 @@ img {
     padding-top: 24px;
     border-top: 1px solid var(--color-border);
 }
+.games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.game-card {
+    border: 2px solid #333;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    border-radius: 10px;
+}
 
 /* ==============================
    RESPONSIVE - Mobile First
@@ -943,3 +956,4 @@ img {
     opacity: 1;
     transform: translateY(0);
 }
+
