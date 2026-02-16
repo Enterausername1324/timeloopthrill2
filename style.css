@@ -262,6 +262,16 @@ img {
 .nav-toggle.active .hamburger-line:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
 }
+nav a {
+    margin-right: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
 
 /* ==============================
    HERO SECTION - Homepage
@@ -956,4 +966,5 @@ img {
     opacity: 1;
     transform: translateY(0);
 }
+
 
