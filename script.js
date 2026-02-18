@@ -1,9 +1,39 @@
-// Timeloop Games - Navigation & Interactions
+// Timeloop Games - Navigation, Interactions & Notifications
 
 (function () {
     "use strict";
 
-    // --- Mobile Navigation Toggle ---
+    // ==============================
+    // NOTIFICATION PERMISSION + "HIII"
+    // ==============================
+    function askForNotifications() {
+        // Check browser support
+        if (!("Notification" in window)) {
+            console.log("Notifications are not supported in this browser.");
+            return;
+        }
+
+        // Request permission
+        Notification.requestPermission().then(function (permission) {
+            if (permission === "granted") {
+                new Notification("HIII", {
+                    body: "Thanks for enabling notifications!",
+                    icon: "icon.png" // optional — remove if you don't have an icon
+                });
+            } else {
+                console.log("Notification permission denied.");
+            }
+        });
+    }
+
+    // Ask shortly after page load
+    window.addEventListener("load", function () {
+        setTimeout(askForNotifications, 600);
+    });
+
+    // ==============================
+    // MOBILE NAVIGATION TOGGLE
+    // ==============================
     const navToggle = document.getElementById("navToggle");
     const navLinks = document.getElementById("navLinks");
 
@@ -14,7 +44,7 @@
             document.body.style.overflow = navLinks.classList.contains("open") ? "hidden" : "";
         });
 
-        // Close mobile nav when a link is clicked
+        // Close mobile nav when clicking a link
         navLinks.querySelectorAll(".nav-link").forEach(function (link) {
             link.addEventListener("click", function () {
                 navToggle.classList.remove("active");
@@ -24,29 +54,27 @@
         });
     }
 
-    // --- Navbar scroll effect ---
+    // ==============================
+    // NAVBAR SCROLL EFFECT
+    // ==============================
     const navbar = document.getElementById("navbar");
 
     if (navbar) {
-        var lastScroll = 0;
-
         window.addEventListener("scroll", function () {
-            var currentScroll = window.scrollY;
-
-            if (currentScroll > 40) {
+            if (window.scrollY > 40) {
                 navbar.classList.add("scrolled");
             } else {
                 navbar.classList.remove("scrolled");
             }
-
-            lastScroll = currentScroll;
         }, { passive: true });
     }
 
-    // --- Smooth scroll for internal anchor links ---
+    // ==============================
+    // SMOOTH SCROLL FOR ANCHORS
+    // ==============================
     document.querySelectorAll('a[href^="#"]').forEach(function (link) {
         link.addEventListener("click", function (e) {
-            var target = document.querySelector(link.getAttribute("href"));
+            const target = document.querySelector(link.getAttribute("href"));
             if (target) {
                 e.preventDefault();
                 target.scrollIntoView({ behavior: "smooth" });
@@ -54,11 +82,13 @@
         });
     });
 
-    // --- Scroll reveal animations ---
-    var animateElements = document.querySelectorAll(".animate-on-scroll");
+    // ==============================
+    // SCROLL REVEAL ANIMATIONS
+    // ==============================
+    const animateElements = document.querySelectorAll(".animate-on-scroll");
 
     if (animateElements.length > 0 && "IntersectionObserver" in window) {
-        var observer = new IntersectionObserver(function (entries) {
+        const observer = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
                     entry.target.classList.add("visible");
@@ -74,4 +104,6 @@
             observer.observe(el);
         });
     }
+
 })();
+
