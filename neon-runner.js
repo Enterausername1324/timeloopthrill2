@@ -7,16 +7,42 @@ let score = 0;
 let gameOver = false;
 
 let obstacleSpeed = 4;
-let spawnRate = 900;
 
 const gameOverScreen = document.getElementById("gameOver");
 const finalScoreEl = document.getElementById("finalScore");
 const highScoreEl = document.getElementById("highScore");
 
+const leftBtn = document.getElementById("leftBtn");
+const rightBtn = document.getElementById("rightBtn");
+
+let moveLeft = false;
+let moveRight = false;
+
+/* ============================
+   DESKTOP CONTROLS
+   ============================ */
 document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft") player.x -= player.speed;
-    if (e.key === "ArrowRight") player.x += player.speed;
+    if (e.key === "ArrowLeft") moveLeft = true;
+    if (e.key === "ArrowRight") moveRight = true;
 });
+
+document.addEventListener("keyup", (e) => {
+    if (e.key === "ArrowLeft") moveLeft = false;
+    if (e.key === "ArrowRight") moveRight = false;
+});
+
+/* ============================
+   MOBILE TOUCH CONTROLS
+   ============================ */
+leftBtn.addEventListener("touchstart", () => moveLeft = true);
+leftBtn.addEventListener("touchend", () => moveLeft = false);
+
+rightBtn.addEventListener("touchstart", () => moveRight = true);
+rightBtn.addEventListener("touchend", () => moveRight = false);
+
+/* ============================
+   GAME LOGIC
+   ============================ */
 
 function spawnObstacle() {
     const size = 40;
@@ -26,7 +52,7 @@ function spawnObstacle() {
 
 setInterval(() => {
     if (!gameOver) spawnObstacle();
-}, 300);
+}, 500);
 
 function increaseDifficulty() {
     if (score % 300 === 0) {
@@ -59,11 +85,18 @@ function update() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    // Movement
+    if (moveLeft) player.x -= player.speed;
+    if (moveRight) player.x += player.speed;
+
+    // Boundaries
+    player.x = Math.max(0, Math.min(canvas.width - player.width, player.x));
+
     // Draw player
     ctx.fillStyle = "#00eaff";
     ctx.fillRect(player.x, player.y, player.width, player.height);
 
-    // Move & draw obstacles
+    // Obstacles
     ctx.fillStyle = "#ff3b3b";
     obstacles.forEach((o) => {
         o.y += o.speed;
