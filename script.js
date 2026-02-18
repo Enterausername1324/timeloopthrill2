@@ -1,34 +1,43 @@
-// Timeloop Games - Navigation, Interactions & Notifications
+// Timeloop Games - Navigation, Interactions & Daily Notifications
 
 (function () {
     "use strict";
 
     // ==============================
-    // NOTIFICATION PERMISSION + "HIII"
+    // DAILY NOTIFICATION SYSTEM
     // ==============================
-    function askForNotifications() {
-        // Check browser support
+    function showDailyNotification() {
         if (!("Notification" in window)) {
-            console.log("Notifications are not supported in this browser.");
+            console.log("Notifications not supported.");
             return;
         }
 
-        // Request permission
-        Notification.requestPermission().then(function (permission) {
-            if (permission === "granted") {
-                new Notification("HIII", {
-                    body: "Thanks for enabling notifications!",
-                    icon: "icon.png" // optional — remove if you don't have an icon
-                });
-            } else {
-                console.log("Notification permission denied.");
-            }
-        });
+        // Ask permission only if not decided yet
+        if (Notification.permission === "default") {
+            Notification.requestPermission();
+        }
+
+        // Only continue if permission is granted
+        if (Notification.permission !== "granted") return;
+
+        const lastShown = localStorage.getItem("lastNotificationTime");
+        const now = Date.now();
+        const oneDay = 24 * 60 * 60 * 1000; // 24 hours
+
+        // If never shown OR more than a day has passed
+        if (!lastShown || now - lastShown > oneDay) {
+            new Notification("HIII", {
+                body: "Thanks for visiting Timeloop Thrill!",
+                icon: "icon.png"
+            });
+
+            localStorage.setItem("lastNotificationTime", now);
+        }
     }
 
-    // Ask shortly after page load
+    // Trigger notification shortly after load
     window.addEventListener("load", function () {
-        setTimeout(askForNotifications, 600);
+        setTimeout(showDailyNotification, 600);
     });
 
     // ==============================
@@ -44,7 +53,6 @@
             document.body.style.overflow = navLinks.classList.contains("open") ? "hidden" : "";
         });
 
-        // Close mobile nav when clicking a link
         navLinks.querySelectorAll(".nav-link").forEach(function (link) {
             link.addEventListener("click", function () {
                 navToggle.classList.remove("active");
@@ -106,4 +114,3 @@
     }
 
 })();
-
