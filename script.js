@@ -40,6 +40,7 @@
     // ==============================
     // SECRET BUTTON ("???")
     // ==============================
+  document.addEventListener("DOMContentLoaded", () => {
     const secretButton = document.getElementById("secretButton");
 
     if (secretButton) {
@@ -47,6 +48,7 @@
             alert("Enter the Konami Code");
         });
     }
+});
 
     // ==============================
     // KONAMI CODE UNLOCK → secret.html
@@ -143,3 +145,4 @@
     }
 
 })();
+
