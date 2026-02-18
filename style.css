@@ -1019,6 +1019,78 @@ nav a:hover {
     margin-top: 20px;
 }
 /* ============================
+   ARCADE GAME LIST (HORIZONTAL)
+   ============================ */
+
+.arcade-game {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 212, 255, 0.25);
+}
+
+.arcade-game-info {
+    flex: 1;
+}
+
+.arcade-game-title {
+    font-family: var(--font-display, "Orbitron", system-ui);
+    font-size: 1.2rem;
+    letter-spacing: 0.06em;
+    margin: 0 0 0.3rem;
+}
+
+.arcade-game-desc {
+    font-family: var(--font-body, "Inter", system-ui);
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin: 0;
+}
+
+.arcade-game-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.arcade-play-btn {
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-accent, #00eaff);
+    color: var(--color-accent, #00eaff);
+    text-decoration: none;
+    font-family: var(--font-display, "Orbitron", system-ui);
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: transparent;
+    transition: 0.2s ease;
+}
+
+.arcade-play-btn:hover {
+    background: var(--color-accent, #00eaff);
+    color: #000;
+}
+
+/* Mobile: stack vertically again so it doesn't squish */
+@media (max-width: 700px) {
+    .arcade-game {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .arcade-game-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+
+/* ============================
    MOBILE GAME CONTROLS
    ============================ */
 
@@ -1338,6 +1410,7 @@ nav a:hover {
     opacity: 1;
     transform: translateY(0);
 }
+
 
 
 
