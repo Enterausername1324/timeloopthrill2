@@ -1,14 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Arcade</title>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcade – Timeloop Games</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h1>Timeloop Arcade</h1>
-    <div class="games">
-       
-    </div>
+
+    <!-- NAVBAR (same as your main site) -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">TIMELOOP<span class="logo-accent">GAMES</span></span>
+            </a>
+
+            <button class="nav-toggle" id="navToggle">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html" class="nav-link"><span class="nav-link-label">Home</span><span class="nav-link-line"></span></a>
+                <a href="about.html" class="nav-link"><span class="nav-link-label">About</span><span class="nav-link-line"></span></a>
+                <a href="arcade.html" class="nav-link active"><span class="nav-link-label">Arcade</span><span class="nav-link-line"></span></a>
+                <a href="contact.html" class="nav-link"><span class="nav-link-label">Contact</span><span class="nav-link-line"></span></a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1 class="page-title">Arcade</h1>
+            <p class="page-subtitle">Play our latest browser‑based mini‑games</p>
+        </div>
+    </section>
+
+    <!-- ARCADE GRID -->
+    <section class="arcade-section container">
+        <div class="arcade-grid">
+
+            <!-- GAME CARD -->
+            <div class="game-card animate-on-scroll">
+                <div class="game-thumb"></div>
+                <h3>Neon Runner</h3>
+                <p>Dodge obstacles and race through a glowing cyber‑city.</p>
+                <a href="#" class="btn btn-primary btn-full">Play Now</a>
+            </div>
+
+            <div class="game-card animate-on-scroll">
+                <div class="game-thumb"></div>
+                <h3>Starfall Defender</h3>
+                <p>Blast incoming meteors and protect the galaxy.</p>
+                <a href="#" class="btn btn-primary btn-full">Play Now</a>
+            </div>
+
+            <div class="game-card animate-on-scroll">
+                <div class="game-thumb"></div>
+                <h3>Quantum Puzzle</h3>
+                <p>Bend time and solve mind‑twisting logic challenges.</p>
+                <a href="#" class="btn btn-primary btn-full">Play Now</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">TIMELOOP GAMES</div>
+                <div class="footer-tagline">Crafting Worlds Beyond Reality</div>
+            </div>
+            <div class="footer-bottom">© 2026 Timeloop Games</div>
+        </div>
+    </footer>
+
 </body>
 </html>
