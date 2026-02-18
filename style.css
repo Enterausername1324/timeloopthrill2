@@ -449,6 +449,19 @@ nav a:hover {
 /* ==============================
    BUTTONS
    ============================== */
+.secret-btn {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.secret-btn:hover {
+    color: white;
+}
+
 .btn {
     display: inline-flex;
     align-items: center;
@@ -966,4 +979,5 @@ nav a:hover {
     opacity: 1;
     transform: translateY(0);
 }
+
 
