@@ -12,16 +12,20 @@ let player = {
     height: 40
 };
 
-// Movement
+// Movement flags
 let moveLeft = false;
 let moveRight = false;
-const MOVE_SPEED = 8;
+
+// SLOWER, BALANCED SPEED
+const MOVE_SPEED = 5; // was 8 — now slower and smoother
 
 // Game state
 let obstacles = [];
 let score = 0;
 let gameOver = false;
-let obstacleSpeed = 4;
+
+// SLOWER OBSTACLE SPEED
+let obstacleSpeed = 2.5; // was 4
 
 // UI
 const gameOverScreen = document.getElementById("gameOver");
@@ -36,34 +40,32 @@ const rightBtn = document.getElementById("rightBtn");
 // KEYBOARD CONTROLS
 // ============================
 document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") moveLeft = true;
-    if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") moveRight = true;
+    if (e.key === "ArrowLeft" || e.key === "a") moveLeft = true;
+    if (e.key === "ArrowRight" || e.key === "d") moveRight = true;
 });
 
 document.addEventListener("keyup", (e) => {
-    if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") moveLeft = false;
-    if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") moveRight = false;
+    if (e.key === "ArrowLeft" || e.key === "a") moveLeft = false;
+    if (e.key === "ArrowRight" || e.key === "d") moveRight = false;
 });
 
 // ============================
 // TOUCH BUTTON CONTROLS
 // ============================
-if (leftBtn && rightBtn) {
-    leftBtn.addEventListener("touchstart", () => { moveLeft = true; });
-    leftBtn.addEventListener("touchend", () => { moveLeft = false; });
+leftBtn.addEventListener("touchstart", () => moveLeft = true);
+leftBtn.addEventListener("touchend", () => moveLeft = false);
 
-    rightBtn.addEventListener("touchstart", () => { moveRight = true; });
-    rightBtn.addEventListener("touchend", () => { moveRight = false; });
+rightBtn.addEventListener("touchstart", () => moveRight = true);
+rightBtn.addEventListener("touchend", () => moveRight = false);
 
-    // Also support mouse click/hold (for tablets with cursors)
-    leftBtn.addEventListener("mousedown", () => { moveLeft = true; });
-    leftBtn.addEventListener("mouseup", () => { moveLeft = false; });
-    leftBtn.addEventListener("mouseleave", () => { moveLeft = false; });
+// Mouse support (for tablets w/ cursor)
+leftBtn.addEventListener("mousedown", () => moveLeft = true);
+leftBtn.addEventListener("mouseup", () => moveLeft = false);
+leftBtn.addEventListener("mouseleave", () => moveLeft = false);
 
-    rightBtn.addEventListener("mousedown", () => { moveRight = true; });
-    rightBtn.addEventListener("mouseup", () => { moveRight = false; });
-    rightBtn.addEventListener("mouseleave", () => { moveRight = false; });
-}
+rightBtn.addEventListener("mousedown", () => moveRight = true);
+rightBtn.addEventListener("mouseup", () => moveRight = false);
+rightBtn.addEventListener("mouseleave", () => moveRight = false);
 
 // ============================
 // OBSTACLES
@@ -81,16 +83,17 @@ function spawnObstacle() {
     });
 }
 
+// Slower spawn rate
 setInterval(() => {
     if (!gameOver) spawnObstacle();
-}, 500);
+}, 650); // was 500
 
 // ============================
-// DIFFICULTY
+// DIFFICULTY (SLOWER)
 // ============================
 function increaseDifficulty() {
-    if (score % 300 === 0) {
-        obstacleSpeed += 0.4;
+    if (score % 500 === 0) { // was 300
+        obstacleSpeed += 0.25; // slower increase
     }
 }
 
@@ -125,14 +128,14 @@ function update() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Movement
+    // Movement (same speed for PC + mobile)
     if (moveLeft) player.x -= MOVE_SPEED;
     if (moveRight) player.x += MOVE_SPEED;
 
-    // Bounds
+    // Boundaries
     player.x = Math.max(0, Math.min(canvas.width - player.width, player.x));
 
-    // Player
+    // Draw player
     ctx.fillStyle = "#00eaff";
     ctx.fillRect(player.x, player.y, player.width, player.height);
 
@@ -142,6 +145,7 @@ function update() {
         o.y += o.speed;
         ctx.fillRect(o.x, o.y, o.width, o.height);
 
+        // Collision
         if (
             o.x < player.x + player.width &&
             o.x + o.width > player.x &&
@@ -154,7 +158,7 @@ function update() {
 
     obstacles = obstacles.filter((o) => o.y < canvas.height);
 
-    // Score
+    // Score + difficulty
     score++;
     increaseDifficulty();
 
