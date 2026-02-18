@@ -4,7 +4,7 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-// Player object (speed handled separately)
+// Player object
 let player = { 
     x: 160, 
     y: 520, 
@@ -16,7 +16,7 @@ let player = {
 let moveLeft = false;
 let moveRight = false;
 
-// Unified movement speed (balanced for PC + mobile)
+// Balanced movement speed
 const MOVE_SPEED = 8;
 
 // Game variables
@@ -35,26 +35,58 @@ const leftBtn = document.getElementById("leftBtn");
 const rightBtn = document.getElementById("rightBtn");
 
 // ============================
-// DESKTOP CONTROLS
+// DESKTOP KEYBOARD CONTROLS
+// (Arrow keys + WASD)
 // ============================
 document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft") moveLeft = true;
-    if (e.key === "ArrowRight") moveRight = true;
+    if (e.key === "ArrowLeft" || e.key === "a") moveLeft = true;
+    if (e.key === "ArrowRight" || e.key === "d") moveRight = true;
 });
 
 document.addEventListener("keyup", (e) => {
-    if (e.key === "ArrowLeft") moveLeft = false;
-    if (e.key === "ArrowRight") moveRight = false;
+    if (e.key === "ArrowLeft" || e.key === "a") moveLeft = false;
+    if (e.key === "ArrowRight" || e.key === "d") moveRight = false;
 });
 
 // ============================
-// MOBILE TOUCH CONTROLS
+// MOBILE TOUCH BUTTONS
 // ============================
 leftBtn.addEventListener("touchstart", () => moveLeft = true);
 leftBtn.addEventListener("touchend", () => moveLeft = false);
 
 rightBtn.addEventListener("touchstart", () => moveRight = true);
 rightBtn.addEventListener("touchend", () => moveRight = false);
+
+// ============================
+// TOUCH DRAG / SWIPE (iPad fix)
+// ============================
+let touchStartX = null;
+
+canvas.addEventListener("touchstart", (e) => {
+    touchStartX = e.touches[0].clientX;
+});
+
+canvas.addEventListener("touchmove", (e) => {
+    const currentX = e.touches[0].clientX;
+
+    if (touchStartX === null) return;
+
+    const diff = currentX - touchStartX;
+
+    if (diff < -10) {
+        moveLeft = true;
+        moveRight = false;
+    } else if (diff > 10) {
+        moveRight = true;
+        moveLeft = false;
+    }
+});
+
+canvas.addEventListener("touchend", () => {
+    moveLeft = false;
+    moveRight = false;
+    touchStartX = null;
+});
 
 // ============================
 // SPAWN OBSTACLES
@@ -72,7 +104,6 @@ function spawnObstacle() {
     });
 }
 
-// Spawn every 500ms
 setInterval(() => {
     if (!gameOver) spawnObstacle();
 }, 500);
@@ -117,7 +148,7 @@ function update() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Movement (balanced for PC + mobile)
+    // Movement (same speed on all devices)
     if (moveLeft) player.x -= MOVE_SPEED;
     if (moveRight) player.x += MOVE_SPEED;
 
@@ -128,13 +159,13 @@ function update() {
     ctx.fillStyle = "#00eaff";
     ctx.fillRect(player.x, player.y, player.width, player.height);
 
-    // Draw + move obstacles
+    // Obstacles
     ctx.fillStyle = "#ff3b3b";
     obstacles.forEach((o) => {
         o.y += o.speed;
         ctx.fillRect(o.x, o.y, o.width, o.height);
 
-        // Collision detection
+        // Collision
         if (
             o.x < player.x + player.width &&
             o.x + o.width > player.x &&
@@ -145,14 +176,11 @@ function update() {
         }
     });
 
-    // Remove off-screen obstacles
     obstacles = obstacles.filter((o) => o.y < canvas.height);
 
-    // Score + difficulty
     score++;
     increaseDifficulty();
 
-    // Draw score
     ctx.fillStyle = "#fff";
     ctx.font = "16px Inter";
     ctx.fillText("Score: " + score, 10, 20);
@@ -161,4 +189,3 @@ function update() {
 }
 
 update();
-
