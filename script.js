@@ -34,65 +34,29 @@
     });
 
     // ==============================
-    // WAIT FOR DOM TO LOAD
+    // SECRET CODE SYSTEM (345543)
     // ==============================
     document.addEventListener("DOMContentLoaded", () => {
-
-        // ==============================
-        // SECRET BUTTON ("???")
-        // ==============================
         const secretButton = document.getElementById("secretButton");
+        const secretPrompt = document.getElementById("secretPrompt");
+        const secretInput = document.getElementById("secretInput");
+        const secretSubmit = document.getElementById("secretSubmit");
 
         if (secretButton) {
             secretButton.addEventListener("click", () => {
-                alert("Enter the Konami Code");
-
-                // Show mobile Konami panel
-                const panel = document.getElementById("konamiPanel");
-                if (panel) panel.style.display = "flex";
+                secretPrompt.style.display = "block";
             });
         }
 
-        // ==============================
-        // KONAMI CODE (Keyboard + Mobile)
-        // ==============================
-        let konami = [];
-        const konamiCode = [
-            "ArrowUp","ArrowUp","ArrowDown","ArrowDown",
-            "ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"
-        ];
-
-        function checkKonami() {
-            if (JSON.stringify(konami) === JSON.stringify(konamiCode)) {
-                window.location.href = "secret.html";
-            }
-        }
-
-        // Keyboard support
-        window.addEventListener("keydown", (e) => {
-            konami.push(e.key);
-
-            if (konami.length > konamiCode.length) {
-                konami.shift();
-            }
-
-            checkKonami();
-        });
-
-        // Mobile tap support
-        const mobileButtons = document.querySelectorAll(".konami-btn");
-        mobileButtons.forEach(btn => {
-            btn.addEventListener("click", () => {
-                konami.push(btn.dataset.key);
-
-                if (konami.length > konamiCode.length) {
-                    konami.shift();
+        if (secretSubmit) {
+            secretSubmit.addEventListener("click", () => {
+                if (secretInput.value === "345543") {
+                    window.location.href = "secret.html";
+                } else {
+                    alert("Incorrect code");
                 }
-
-                checkKonami();
             });
-        });
-
+        }
     });
 
     // ==============================
