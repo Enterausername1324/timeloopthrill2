@@ -12,13 +12,18 @@
 
     <link rel="stylesheet" href="style.css">
     <script src="neon-runner.js" defer></script>
+    <link rel="icon" href="/favicon.png" type="image/png">
 </head>
 
 <body class="game-body">
 
-    <!-- NAVBAR -->
+    <!-- ==============================
+         NAVIGATION (MATCHES ALL PAGES)
+         ============================== -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
+
+            <!-- LOGO WITH ICON -->
             <a href="index.html" class="nav-logo">
                 <div class="logo-icon">
                     <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -29,17 +34,28 @@
                 </div>
                 <span class="logo-text">TIMELOOP<span class="logo-accent">GAMES</span></span>
             </a>
+
         </div>
     </nav>
 
-    <!-- GAME AREA -->
+    <!-- ==============================
+         GAME AREA
+         ============================== -->
     <div class="game-wrapper">
+
         <div class="game-header">
             <h1 class="game-title">NEON RUNNER</h1>
-            <p class="game-info">Use ← → to dodge obstacles</p>
+            <p class="game-info">Use ← → or tap buttons to dodge obstacles</p>
         </div>
 
+        <!-- GAME CANVAS -->
         <canvas id="gameCanvas" width="360" height="600"></canvas>
+
+        <!-- MOBILE TOUCH CONTROLS -->
+        <div class="mobile-controls">
+            <button id="leftBtn" class="mobile-btn">←</button>
+            <button id="rightBtn" class="mobile-btn">→</button>
+        </div>
 
         <!-- GAME OVER SCREEN -->
         <div id="gameOver" class="game-over-screen">
@@ -49,9 +65,11 @@
             <button class="game-over-btn" onclick="restartGame()">Play Again</button>
         </div>
 
+        <!-- BACK BUTTON -->
         <div class="game-back">
             <a href="arcade.html">← Back to Arcade</a>
         </div>
+
     </div>
 
 </body>
