@@ -34,25 +34,18 @@
     });
 
     // ==============================
-    // SECRET CODE SYSTEM (345543)
+    // SIMPLE SECRET CODE PROMPT
     // ==============================
     document.addEventListener("DOMContentLoaded", () => {
         const secretButton = document.getElementById("secretButton");
-        const secretPrompt = document.getElementById("secretPrompt");
-        const secretInput = document.getElementById("secretInput");
-        const secretSubmit = document.getElementById("secretSubmit");
 
         if (secretButton) {
             secretButton.addEventListener("click", () => {
-                secretPrompt.style.display = "block";
-            });
-        }
+                const code = prompt("Enter the secret code:");
 
-        if (secretSubmit) {
-            secretSubmit.addEventListener("click", () => {
-                if (secretInput.value === "345543") {
+                if (code === "345543") {
                     window.location.href = "secret.html";
-                } else {
+                } else if (code !== null) {
                     alert("Incorrect code");
                 }
             });
