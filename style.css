@@ -786,6 +786,77 @@ nav a:hover {
     min-height: 120px;
 }
 
+/* ============================
+   SECRET PAGE STYLING
+   ============================ */
+
+.secret-body {
+    margin: 0;
+    padding: 0;
+    background: #0a0a0a;
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.secret-container {
+    text-align: center;
+    animation: secretFadeIn 1.2s ease forwards;
+}
+
+.secret-title {
+    font-size: 3rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    color: #00eaff;
+    text-shadow: 0 0 10px #00eaff;
+}
+
+.secret-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+.secret-glitch {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    color: #ff3b3b;
+    animation: secretGlitch 1.5s infinite;
+}
+
+.secret-back {
+    display: inline-block;
+    margin-top: 30px;
+    color: #00eaff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border: 1px solid #00eaff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: 0.2s ease;
+}
+
+.secret-back:hover {
+    background: #00eaff;
+    color: #000;
+}
+
+/* Animations */
+@keyframes secretFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes secretGlitch {
+    0% { text-shadow: 2px 2px #ff3b3b, -2px -2px #00eaff; }
+    50% { text-shadow: -2px 2px #ff3b3b, 2px -2px #00eaff; }
+    100% { text-shadow: 2px -2px #ff3b3b, -2px 2px #00eaff; }
+}
+
 /* ==============================
    FOOTER
    ============================== */
@@ -979,5 +1050,6 @@ nav a:hover {
     opacity: 1;
     transform: translateY(0);
 }
+
 
 
