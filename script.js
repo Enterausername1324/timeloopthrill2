@@ -7,12 +7,8 @@
     // DAILY NOTIFICATION SYSTEM
     // ==============================
     function showDailyNotification() {
-        if (!("Notification" in window)) {
-            console.log("Notifications not supported.");
-            return;
-        }
+        if (!("Notification" in window)) return;
 
-        // Ask permission only once
         if (Notification.permission === "default") {
             Notification.requestPermission();
         }
@@ -33,42 +29,70 @@
         }
     }
 
-    window.addEventListener("load", function () {
+    window.addEventListener("load", () => {
         setTimeout(showDailyNotification, 600);
     });
 
     // ==============================
-    // SECRET BUTTON ("???")
+    // WAIT FOR DOM TO LOAD
     // ==============================
-  document.addEventListener("DOMContentLoaded", () => {
-    const secretButton = document.getElementById("secretButton");
+    document.addEventListener("DOMContentLoaded", () => {
 
-    if (secretButton) {
-        secretButton.addEventListener("click", () => {
-            alert("Enter the Konami Code");
+        // ==============================
+        // SECRET BUTTON ("???")
+        // ==============================
+        const secretButton = document.getElementById("secretButton");
+
+        if (secretButton) {
+            secretButton.addEventListener("click", () => {
+                alert("Enter the Konami Code");
+
+                // Show mobile Konami panel
+                const panel = document.getElementById("konamiPanel");
+                if (panel) panel.style.display = "flex";
+            });
+        }
+
+        // ==============================
+        // KONAMI CODE (Keyboard + Mobile)
+        // ==============================
+        let konami = [];
+        const konamiCode = [
+            "ArrowUp","ArrowUp","ArrowDown","ArrowDown",
+            "ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"
+        ];
+
+        function checkKonami() {
+            if (JSON.stringify(konami) === JSON.stringify(konamiCode)) {
+                window.location.href = "secret.html";
+            }
+        }
+
+        // Keyboard support
+        window.addEventListener("keydown", (e) => {
+            konami.push(e.key);
+
+            if (konami.length > konamiCode.length) {
+                konami.shift();
+            }
+
+            checkKonami();
         });
-    }
-});
 
-    // ==============================
-    // KONAMI CODE UNLOCK → secret.html
-    // ==============================
-    let konami = [];
-    const konamiCode = [
-        "ArrowUp","ArrowUp","ArrowDown","ArrowDown",
-        "ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"
-    ];
+        // Mobile tap support
+        const mobileButtons = document.querySelectorAll(".konami-btn");
+        mobileButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                konami.push(btn.dataset.key);
 
-    window.addEventListener("keydown", function (e) {
-        konami.push(e.key);
+                if (konami.length > konamiCode.length) {
+                    konami.shift();
+                }
 
-        if (konami.length > konamiCode.length) {
-            konami.shift();
-        }
+                checkKonami();
+            });
+        });
 
-        if (JSON.stringify(konami) === JSON.stringify(konamiCode)) {
-            window.location.href = "secret.html";
-        }
     });
 
     // ==============================
@@ -145,4 +169,3 @@
     }
 
 })();
-
