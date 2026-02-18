@@ -6,6 +6,13 @@ let obstacles = [];
 let score = 0;
 let gameOver = false;
 
+let obstacleSpeed = 4;
+let spawnRate = 900;
+
+const gameOverScreen = document.getElementById("gameOver");
+const finalScoreEl = document.getElementById("finalScore");
+const highScoreEl = document.getElementById("highScore");
+
 document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowLeft") player.x -= player.speed;
     if (e.key === "ArrowRight") player.x += player.speed;
@@ -14,10 +21,38 @@ document.addEventListener("keydown", (e) => {
 function spawnObstacle() {
     const size = 40;
     const x = Math.random() * (canvas.width - size);
-    obstacles.push({ x, y: -size, width: size, height: size, speed: 4 });
+    obstacles.push({ x, y: -size, width: size, height: size, speed: obstacleSpeed });
 }
 
-setInterval(spawnObstacle, 900);
+setInterval(() => {
+    if (!gameOver) spawnObstacle();
+}, 300);
+
+function increaseDifficulty() {
+    if (score % 300 === 0) {
+        obstacleSpeed += 0.4;
+    }
+}
+
+function showGameOver() {
+    gameOver = true;
+
+    finalScoreEl.textContent = score;
+
+    let highScore = localStorage.getItem("neonHighScore") || 0;
+    if (score > highScore) {
+        highScore = score;
+        localStorage.setItem("neonHighScore", highScore);
+    }
+
+    highScoreEl.textContent = highScore;
+
+    gameOverScreen.classList.add("show");
+}
+
+function restartGame() {
+    window.location.reload();
+}
 
 function update() {
     if (gameOver) return;
@@ -41,17 +76,15 @@ function update() {
             o.y < player.y + player.height &&
             o.y + o.height > player.y
         ) {
-            gameOver = true;
-            alert("Game Over! Score: " + score);
-            window.location.reload();
+            showGameOver();
         }
     });
 
-    // Remove off-screen obstacles
     obstacles = obstacles.filter((o) => o.y < canvas.height);
 
-    // Score
     score++;
+    increaseDifficulty();
+
     ctx.fillStyle = "#fff";
     ctx.font = "16px Inter";
     ctx.fillText("Score: " + score, 10, 20);
