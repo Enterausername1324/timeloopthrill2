@@ -7,17 +7,19 @@
     <meta name="robots" content="index, follow">
 
     <meta property="og:title" content="Timeloop Thrill">
-<meta property="og:description" content="The official Timeloop Thrill website — games, arcade, and more.">
+    <meta property="og:description" content="The official Timeloop Thrill website — games, arcade, and more.">
+
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Script loads AFTER HTML because of defer -->
     <script src="script.js" defer></script>
-   <link rel="icon" href="/favicon.png" type="image/png">
 
-
-
+    <link rel="icon" href="/favicon.png" type="image/png">
 </head>
+
 <body>
 
     <nav class="navbar" id="navbar">
@@ -46,9 +48,10 @@
                     <span class="nav-link-label">Contact</span>
                     <span class="nav-link-line"></span>
                 </a>
-                <a href="arcade.html" class="nav-link"><span class="nav-link-label">Arcade</span><span class="nav-link-line"></span></a>
-
-                
+                <a href="arcade.html" class="nav-link">
+                    <span class="nav-link-label">Arcade</span>
+                    <span class="nav-link-line"></span>
+                </a>
             </div>
 
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
@@ -70,17 +73,24 @@
             <div class="glow-orb glow-orb-1"></div>
             <div class="glow-orb glow-orb-2"></div>
         </div>
+
         <div class="hero-content">
             <div class="hero-badge">INDIE GAME STUDIO</div>
             <h1 class="hero-title">
                 <span class="title-line">Welcome to</span>
                 <span class="title-main">TIMELOOP<span class="text-accent"> GAMES</span></span>
             </h1>
-            <p class="hero-subtitle">Indie games built with creativity, passion, and a love for the unexpected. We craft time-bending experiences that push storytelling into new dimensions.</p>
+            <p class="hero-subtitle">
+                Indie games built with creativity, passion, and a love for the unexpected.
+                We craft time-bending experiences that push storytelling into new dimensions.
+            </p>
+
             <div class="hero-actions">
                 <a href="about.html" class="btn btn-primary">
                     <span>Discover More</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
                 </a>
                 <a href="contact.html" class="btn btn-outline">Get In Touch</a>
             </div>
@@ -89,30 +99,25 @@
 
     <footer class="site-footer">
         <div class="footer-container">
+
             <div class="footer-brand">
                 <span class="footer-logo">TIMELOOP<span class="text-accent">GAMES</span></span>
                 <p class="footer-tagline">Crafting worlds beyond time.</p>
             </div>
+
             <div class="footer-links">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
             </div>
+
             <div class="footer-bottom">
                 &copy; 2026 Timeloop Games &mdash; All Rights Reserved
                 <button id="secretButton" class="secret-btn">???</button>
             </div>
+
         </div>
     </footer>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
