@@ -1,4 +1,4 @@
-// Timeloop Games - Navigation, Interactions & Daily Notifications
+// Timeloop Thrill - Navigation, Interactions, Secrets & Daily Notifications
 
 (function () {
     "use strict";
@@ -12,19 +12,17 @@
             return;
         }
 
-        // Ask permission only if not decided yet
+        // Ask permission only once
         if (Notification.permission === "default") {
             Notification.requestPermission();
         }
 
-        // Only continue if permission is granted
         if (Notification.permission !== "granted") return;
 
         const lastShown = localStorage.getItem("lastNotificationTime");
         const now = Date.now();
-        const oneDay = 24 * 60 * 60 * 1000; // 24 hours
+        const oneDay = 24 * 60 * 60 * 1000;
 
-        // If never shown OR more than a day has passed
         if (!lastShown || now - lastShown > oneDay) {
             new Notification("HIII", {
                 body: "Thanks for visiting Timeloop Thrill!",
@@ -35,9 +33,40 @@
         }
     }
 
-    // Trigger notification shortly after load
     window.addEventListener("load", function () {
         setTimeout(showDailyNotification, 600);
+    });
+
+    // ==============================
+    // SECRET BUTTON ("???")
+    // ==============================
+    const secretButton = document.getElementById("secretButton");
+
+    if (secretButton) {
+        secretButton.addEventListener("click", () => {
+            alert("Enter the Konami Code");
+        });
+    }
+
+    // ==============================
+    // KONAMI CODE UNLOCK → secret.html
+    // ==============================
+    let konami = [];
+    const konamiCode = [
+        "ArrowUp","ArrowUp","ArrowDown","ArrowDown",
+        "ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"
+    ];
+
+    window.addEventListener("keydown", function (e) {
+        konami.push(e.key);
+
+        if (konami.length > konamiCode.length) {
+            konami.shift();
+        }
+
+        if (JSON.stringify(konami) === JSON.stringify(konamiCode)) {
+            window.location.href = "secret.html";
+        }
     });
 
     // ==============================
