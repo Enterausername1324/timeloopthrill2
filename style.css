@@ -911,6 +911,113 @@ nav a:hover {
     background: var(--color-accent);
     color: #000;
 }
+/* ============================
+   NEON RUNNER GAME PAGE
+   ============================ */
+
+.game-body {
+    margin: 0;
+    padding: 0;
+    background: #050509;
+    color: #fff;
+    font-family: var(--font-ui);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.game-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: var(--nav-height);
+}
+
+.game-header {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.game-title {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+
+.game-info {
+    font-size: 14px;
+    color: var(--color-text-muted);
+}
+
+#gameCanvas {
+    background: radial-gradient(circle at top, #111827 0, #020617 55%);
+    border: 1px solid rgba(148, 163, 184, 0.4);
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.25);
+}
+
+/* GAME OVER SCREEN */
+.game-over-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 360px;
+    height: 600px;
+    background: rgba(5, 5, 15, 0.92);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-family: var(--font-ui);
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s ease;
+    border-radius: 12px;
+}
+
+.game-over-screen.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.game-over-title {
+    font-family: var(--font-display);
+    font-size: 32px;
+    color: #00eaff;
+    margin-bottom: 10px;
+}
+
+.game-over-score,
+.game-over-highscore {
+    font-size: 18px;
+    margin: 6px 0;
+    color: var(--color-text-muted);
+}
+
+.game-over-btn {
+    margin-top: 20px;
+    padding: 10px 22px;
+    border-radius: 8px;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s ease;
+}
+
+.game-over-btn:hover {
+    background: var(--color-accent);
+    color: #000;
+}
+
+.game-back {
+    margin-top: 20px;
+}
 
 
 /* Animations */
@@ -1176,6 +1283,7 @@ nav a:hover {
     opacity: 1;
     transform: translateY(0);
 }
+
 
 
 
