@@ -227,6 +227,42 @@ img {
     transform: translateX(-50%) scaleX(1);
     width: 28px;
 }
+/* ==============================
+   NAVIGATION — Add Arcade Support
+   ============================== */
+
+/* Ensure all nav links (including Arcade) display correctly */
+.nav-links .nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 20px;
+    border-radius: 8px;
+    transition: all 0.3s var(--ease-out-expo);
+}
+
+/* Active state for ANY page, including Arcade */
+.nav-link.active .nav-link-label {
+    color: var(--color-accent);
+    font-weight: 600;
+}
+
+.nav-link.active .nav-link-line {
+    transform: translateX(-50%) scaleX(1);
+    width: 28px;
+}
+
+/* Mobile menu support for new link */
+@media (max-width: 768px) {
+    .nav-links .nav-link {
+        padding: 16px 32px;
+    }
+
+    .nav-link-label {
+        font-size: 20px;
+        letter-spacing: 2px;
+    }
+}
 
 /* Mobile Toggle */
 .nav-toggle {
@@ -966,5 +1002,6 @@ nav a:hover {
     opacity: 1;
     transform: translateY(0);
 }
+
 
 
