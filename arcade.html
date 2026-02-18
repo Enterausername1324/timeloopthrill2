@@ -9,42 +9,66 @@
 
 <body>
 
-    <!-- NAVBAR (same as your main site) -->
+    <!-- ==============================
+         NAVIGATION (IDENTICAL ON ALL PAGES)
+         ============================== -->
     <header class="navbar">
         <div class="nav-container">
+
+            <!-- LOGO -->
             <a href="index.html" class="nav-logo">
                 <span class="logo-text">TIMELOOP<span class="logo-accent">GAMES</span></span>
             </a>
 
+            <!-- MOBILE TOGGLE -->
             <button class="nav-toggle" id="navToggle">
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
             </button>
 
+            <!-- NAV LINKS -->
             <nav class="nav-links" id="navLinks">
-                <a href="index.html" class="nav-link"><span class="nav-link-label">Home</span><span class="nav-link-line"></span></a>
-                <a href="about.html" class="nav-link"><span class="nav-link-label">About</span><span class="nav-link-line"></span></a>
-               <a href="arcade.html" class="nav-link"><span class="nav-link-label">Arcade</span><span class="nav-link-line"></span></a>
+                <a href="index.html" class="nav-link">
+                    <span class="nav-link-label">Home</span>
+                    <span class="nav-link-line"></span>
+                </a>
 
-                <a href="contact.html" class="nav-link"><span class="nav-link-label">Contact</span><span class="nav-link-line"></span></a>
+                <a href="about.html" class="nav-link">
+                    <span class="nav-link-label">About</span>
+                    <span class="nav-link-line"></span>
+                </a>
+
+                <a href="arcade.html" class="nav-link active">
+                    <span class="nav-link-label">Arcade</span>
+                    <span class="nav-link-line"></span>
+                </a>
+
+                <a href="contact.html" class="nav-link">
+                    <span class="nav-link-label">Contact</span>
+                    <span class="nav-link-line"></span>
+                </a>
             </nav>
+
         </div>
     </header>
 
-    <!-- PAGE HERO -->
+    <!-- ==============================
+         PAGE HERO
+         ============================== -->
     <section class="page-hero">
         <div class="page-hero-content">
             <h1 class="page-title">Arcade</h1>
-            <p class="page-subtitle">Play our latest browser‑based mini‑games</p>
+            <p class="hero-subtitle">Play our latest browser‑based mini‑games</p>
         </div>
     </section>
 
-    <!-- ARCADE GRID -->
+    <!-- ==============================
+         ARCADE GRID
+         ============================== -->
     <section class="arcade-section container">
         <div class="arcade-grid">
 
-            <!-- GAME CARD -->
             <div class="game-card animate-on-scroll">
                 <div class="game-thumb"></div>
                 <h3>Neon Runner</h3>
@@ -69,7 +93,9 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- ==============================
+         FOOTER
+         ============================== -->
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-brand">
@@ -79,6 +105,17 @@
             <div class="footer-bottom">© 2026 Timeloop Games</div>
         </div>
     </footer>
+
+    <!-- OPTIONAL: Mobile nav toggle script -->
+    <script>
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+    </script>
 
 </body>
 </html>
