@@ -43,7 +43,7 @@
             secretButton.addEventListener("click", () => {
                 const code = prompt("Enter the secret code:");
 
-                if (code === "345543") {
+                if (code === "donate100") {
                     window.location.href = "secret.html";
                 } else if (code !== null) {
                     alert("Incorrect code");
@@ -126,3 +126,4 @@
     }
 
 })();
+
