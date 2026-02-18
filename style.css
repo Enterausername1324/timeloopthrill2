@@ -1018,6 +1018,53 @@ nav a:hover {
 .game-back {
     margin-top: 20px;
 }
+/* ============================
+   MOBILE GAME CONTROLS
+   ============================ */
+
+.mobile-controls {
+    display: none;
+    width: 100%;
+    max-width: 360px;
+    margin-top: 15px;
+    justify-content: space-between;
+}
+
+.mobile-btn {
+    width: 48%;
+    padding: 14px 0;
+    font-size: 22px;
+    font-family: var(--font-display);
+    background: rgba(0, 212, 255, 0.15);
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.mobile-btn:active {
+    background: var(--color-accent);
+    color: #000;
+}
+
+/* Show controls only on mobile */
+@media (max-width: 600px) {
+    .mobile-controls {
+        display: flex;
+    }
+
+    #gameCanvas {
+        width: 95%;
+        height: auto;
+    }
+
+    .game-over-screen {
+        width: 95%;
+        height: 95%;
+    }
+}
+
 
 
 /* Animations */
@@ -1283,6 +1330,7 @@ nav a:hover {
     opacity: 1;
     transform: translateY(0);
 }
+
 
 
 
