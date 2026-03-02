@@ -1,7 +1,18 @@
 // Timeloop Thrill - Navigation, Interactions, Secrets & Daily Notifications
 (function () {
     "use strict";
-
+// ==============================
+    // ANTI-CLOSE (BEFOREUNLOAD)
+    // ==============================
+    window.addEventListener("beforeunload", function (e) {
+        // This is the standard way to trigger the "Leave site?" browser popup
+        e.preventDefault();
+        
+        // Modern browsers require setting returnValue to a string
+        // Note: Most browsers ignore the custom text and show their own default message
+        e.returnValue = "Are you sure you want to exit the Timeloop?";
+        return e.returnValue;
+    });
     // ==============================
     // DAILY NOTIFICATION SYSTEM
     // ==============================
@@ -129,3 +140,4 @@
     }
 
 })();
+
