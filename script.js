@@ -1,5 +1,4 @@
 // Timeloop Thrill - Navigation, Interactions, Secrets & Daily Notifications
-
 (function () {
     "use strict";
 
@@ -34,7 +33,7 @@
     });
 
     // ==============================
-    // SIMPLE SECRET CODE PROMPT
+    // BASE64 SECRET CODE PROMPT
     // ==============================
     document.addEventListener("DOMContentLoaded", () => {
         const secretButton = document.getElementById("secretButton");
@@ -43,10 +42,14 @@
             secretButton.addEventListener("click", () => {
                 const code = prompt("Enter the secret code:");
 
-                if (code === "donate100") {
-                    window.location.href = "secret.html";
+                // We encode the user's input and compare it to our hidden string
+                // "donate100" -> "ZG9uYXRlMTAw"
+                // "secret.html" -> "c2VjcmV0Lmh0bWw="
+                
+                if (code !== null && btoa(code) === "ZG9uYXRlMTAw") {
+                    window.location.href = atob("c2VjcmV0Lmh0bWw=");
                 } else if (code !== null) {
-                    alert("Incorrect code");
+                    alert("Incorrect code. The timeline remains locked.");
                 }
             });
         }
@@ -126,4 +129,3 @@
     }
 
 })();
-
