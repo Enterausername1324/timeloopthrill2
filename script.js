@@ -1,42 +1,39 @@
 // Timeloop Thrill - Navigation, Interactions, Secrets & Daily Notifications
 (function () {
     "use strict";
-// ==============================
-    // ANTI-CLOSE (BEFOREUNLOAD)
-    // ==============================
-   // ==============================
-    // SMART ANTI-CLOSE SYSTEM
-    // ==============================
-    let isInternalNavigation = false;
+// ==========================================
+    // ULTIMATE SMART ANTI-CLOSE (NAV FIX)
+    // ==========================================
+    let allowExit = false;
 
-    // Listen for all clicks on the page
-    document.addEventListener("click", (e) => {
-        const anchor = e.target.closest("a");
-        if (anchor && anchor.href) {
-            // Check if the link is on your same website
-            const url = new URL(anchor.href);
-            if (url.hostname === window.location.hostname) {
-                isInternalNavigation = true;
-            }
+    // This catches clicks BEFORE the browser starts navigating
+    document.addEventListener("mousedown", (e) => {
+        const link = e.target.closest("a");
+        
+        // If it's a link AND it's on our site (timeloopthrill.com)
+        if (link && (link.hostname === window.location.hostname || link.href.startsWith("#"))) {
+            allowExit = true; 
+            console.log("Internal nav detected. Popup disabled.");
+        } else {
+            // If they clicked something else, keep the shield up
+            allowExit = false;
         }
     });
 
-    window.addEventListener("beforeunload", (e) => {
-        // If it's internal navigation, don't show the popup
-        if (isInternalNavigation) {
-            return;
+    window.onbeforeunload = function (e) {
+        // If allowExit is true, we return nothing, which tells the browser "let them go"
+        if (allowExit) {
+            return undefined; 
         }
 
-        // Otherwise, trigger the browser warning (for Tab Close or External Sites)
-        e.preventDefault();
-        e.returnValue = "Are you sure? The loop will reset!";
-        return e.returnValue;
-    });
+        // If allowExit is false (like hitting the X or a different website), show popup
+        const msg = "The loop is resetting!";
+        (e || window.event).returnValue = msg;
+        return msg;
+    };
 
-    // Reset the flag if the user stays on the page for any reason
-    window.addEventListener("pageshow", () => {
-        isInternalNavigation = false;
-    });
+    // Re-arm the shield once the new page loads or if the user cancels
+    window.addEventListener("pageshow", () => { allowExit = false; });
     // ==============================
     // DAILY NOTIFICATION SYSTEM
     // ==============================
@@ -164,5 +161,6 @@
     }
 
 })();
+
 
 
