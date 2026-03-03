@@ -4,14 +4,38 @@
 // ==============================
     // ANTI-CLOSE (BEFOREUNLOAD)
     // ==============================
-    window.addEventListener("beforeunload", function (e) {
-        // This is the standard way to trigger the "Leave site?" browser popup
+   // ==============================
+    // SMART ANTI-CLOSE SYSTEM
+    // ==============================
+    let isInternalNavigation = false;
+
+    // Listen for all clicks on the page
+    document.addEventListener("click", (e) => {
+        const anchor = e.target.closest("a");
+        if (anchor && anchor.href) {
+            // Check if the link is on your same website
+            const url = new URL(anchor.href);
+            if (url.hostname === window.location.hostname) {
+                isInternalNavigation = true;
+            }
+        }
+    });
+
+    window.addEventListener("beforeunload", (e) => {
+        // If it's internal navigation, don't show the popup
+        if (isInternalNavigation) {
+            return;
+        }
+
+        // Otherwise, trigger the browser warning (for Tab Close or External Sites)
         e.preventDefault();
-        
-        // Modern browsers require setting returnValue to a string
-        // Note: Most browsers ignore the custom text and show their own default message
-        e.returnValue = "Are you sure you want to exit the Timeloop?";
+        e.returnValue = "Are you sure? The loop will reset!";
         return e.returnValue;
+    });
+
+    // Reset the flag if the user stays on the page for any reason
+    window.addEventListener("pageshow", () => {
+        isInternalNavigation = false;
     });
     // ==============================
     // DAILY NOTIFICATION SYSTEM
@@ -140,4 +164,5 @@
     }
 
 })();
+
 
