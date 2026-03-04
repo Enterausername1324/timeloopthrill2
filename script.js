@@ -1,39 +1,7 @@
 // Timeloop Thrill - Navigation, Interactions, Secrets & Daily Notifications
 (function () {
     "use strict";
-// ==========================================
-    // ULTIMATE SMART ANTI-CLOSE (NAV FIX)
-    // ==========================================
-    let allowExit = false;
 
-    // This catches clicks BEFORE the browser starts navigating
-    document.addEventListener("mousedown", (e) => {
-        const link = e.target.closest("a");
-        
-        // If it's a link AND it's on our site (timeloopthrill.com)
-        if (link && (link.hostname === window.location.hostname || link.href.startsWith("#"))) {
-            allowExit = true; 
-            console.log("Internal nav detected. Popup disabled.");
-        } else {
-            // If they clicked something else, keep the shield up
-            allowExit = false;
-        }
-    });
-
-    window.onbeforeunload = function (e) {
-        // If allowExit is true, we return nothing, which tells the browser "let them go"
-        if (allowExit) {
-            return undefined; 
-        }
-
-        // If allowExit is false (like hitting the X or a different website), show popup
-        const msg = "The loop is resetting!";
-        (e || window.event).returnValue = msg;
-        return msg;
-    };
-
-    // Re-arm the shield once the new page loads or if the user cancels
-    window.addEventListener("pageshow", () => { allowExit = false; });
     // ==============================
     // DAILY NOTIFICATION SYSTEM
     // ==============================
@@ -51,9 +19,9 @@
         const oneDay = 24 * 60 * 60 * 1000;
 
         if (!lastShown || now - lastShown > oneDay) {
-            new Notification("HIII", {
-                body: "Thanks for visiting Timeloop Thrill!",
-                icon: "icon.png"
+            new Notification("SYSTEM UPDATE", {
+                body: "Thanks for visiting the Timeloop Archive!",
+                icon: "favicon.png"
             });
 
             localStorage.setItem("lastNotificationTime", now);
@@ -61,7 +29,7 @@
     }
 
     window.addEventListener("load", () => {
-        setTimeout(showDailyNotification, 600);
+        setTimeout(showDailyNotification, 1000);
     });
 
     // ==============================
@@ -72,16 +40,15 @@
 
         if (secretButton) {
             secretButton.addEventListener("click", () => {
-                const code = prompt("Enter the secret code:");
+                const code = prompt("ENTER ACCESS KEY:");
 
-                // We encode the user's input and compare it to our hidden string
+                // btoa(code) converts input to Base64
                 // "donate100" -> "ZG9uYXRlMTAw"
-                // "secret.html" -> "c2VjcmV0Lmh0bWw="
-                
                 if (code !== null && btoa(code) === "ZG9uYXRlMTAw") {
+                    // atob converts the hidden path back to "secret.html"
                     window.location.href = atob("c2VjcmV0Lmh0bWw=");
                 } else if (code !== null) {
-                    alert("Incorrect code. The timeline remains locked.");
+                    alert("ACCESS DENIED. THE TIMELINE REMAINS LOCKED.");
                 }
             });
         }
@@ -161,6 +128,3 @@
     }
 
 })();
-
-
-
