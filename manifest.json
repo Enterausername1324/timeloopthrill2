@@ -1,0 +1,16 @@
+{
+  "name": "TIMELOOP // VORTEX_TERMINAL",
+  "short_name": "Vortex",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#00ffcc",
+  "description": "VORTEX_GATEWAY Secure Terminal Interface",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/575/575445.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
