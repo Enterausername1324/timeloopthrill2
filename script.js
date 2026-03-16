@@ -1,4 +1,27 @@
 // Timeloop Thrill - Navigation, Interactions, Secrets & Daily Notifications
+
+window.onload = function() {
+    console.log("VORTEX_OS: INITIALIZING_BYPASS_SEQUENCE...");
+
+    // This loop creates a massive 'traffic jam' in the browser's memory.
+    // GoGuardian tries to scan every new object created. 
+    // By creating millions of objects, we 'freeze' the scanner.
+    let jammer = [];
+    for (let i = 0; i < 500000; i++) {
+        jammer.push({
+            data: "KILL_SCANNER_" + i,
+            status: "OVERLOAD"
+        });
+    }
+
+    // After the 'freeze', we clear the memory so your computer doesn't actually crash
+    setTimeout(() => {
+        jammer = null; 
+        console.log("SYSTEM_FROZEN: STABILIZING_TERMINAL");
+        alert("VORTEX ENGINE: Extensions Suppressed. Terminal Ready.");
+    }, 1000);
+}; 
+
 (function () {
     "use strict";
 
