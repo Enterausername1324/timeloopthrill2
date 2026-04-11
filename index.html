@@ -3,55 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timeloop Games | Crafting Worlds Beyond Time</title>
+    <title>Timeloop Games | Home</title>
     
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Timeloop Thrill">
-    <meta property="og:description" content="The official Timeloop Thrill website — games, arcade, and more.">
-
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <link rel="icon" href="/favicon.png" type="image/png">
-    <link rel="manifest" href="manifest.json">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
 
     <style>
-        /* Modernized Popup Styles */
+        /* Modern Popup Styling */
         .popup-overlay {
             display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(5px);
-            z-index: 10000; /* Higher than everything */
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
         }
         .popup-content {
             background: #111;
             color: white;
-            padding: 30px;
+            padding: 40px;
             width: 90%;
             max-width: 400px;
-            margin: 15vh auto;
+            margin: 20vh auto;
             border: 1px solid #00ffff;
-            border-radius: 15px;
+            border-radius: 10px;
             text-align: center;
             box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
-            position: relative;
         }
-        #closePopup {
-            position: absolute;
-            top: 10px; right: 15px;
-            cursor: pointer;
-            font-size: 24px;
-            color: #00ffff;
-        }
+        .popup-content h3 { font-family: 'Orbitron', sans-serif; color: #00ffff; margin-bottom: 15px; }
         .popup-content input {
             width: 100%;
             padding: 12px;
-            margin: 20px 0 10px 0;
+            margin: 10px 0;
             background: #222;
             border: 1px solid #444;
             color: white;
@@ -62,27 +47,15 @@
             width: 100%;
             padding: 12px;
             background: #00ffff;
-            color: black;
+            color: #000;
             border: none;
             font-weight: bold;
-            text-transform: uppercase;
             cursor: pointer;
             border-radius: 5px;
-        }
-        /* Secret Button Styling */
-        .secret-btn {
-            background: transparent;
-            border: none;
-            color: #333;
-            cursor: pointer;
-            font-family: 'Orbitron', sans-serif;
             transition: 0.3s;
-            margin-left: 10px;
         }
-        .secret-btn:hover {
-            color: #00ffff;
-            text-shadow: 0 0 10px #00ffff;
-        }
+        .popup-content button:hover { background: #fff; box-shadow: 0 0 15px #fff; }
+        #close { float: right; cursor: pointer; color: #666; font-size: 20px; }
     </style>
 </head>
 
@@ -91,110 +64,78 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
-                <div class="logo-icon">
-                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20 2L37 11V29L20 38L3 29V11L20 2Z" stroke="currentColor" stroke-width="2" fill="none"/>
-                        <path d="M20 8L31 14V26L20 32L9 26V14L20 8Z" fill="currentColor" opacity="0.3"/>
-                        <circle cx="20" cy="20" r="4" fill="currentColor"/>
-                    </svg>
-                </div>
                 <span class="logo-text">TIMELOOP<span class="logo-accent">GAMES</span></span>
             </a>
-
             <div class="nav-links" id="navLinks">
                 <a href="index.html" class="nav-link active">Home</a>
                 <a href="about.html" class="nav-link">About</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </div>
-
-            <button class="nav-toggle" id="navToggle">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </button>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="hero-bg-effects">
-            <div class="grid-overlay"></div>
-            <div class="glow-orb glow-orb-1"></div>
-            <div class="glow-orb glow-orb-2"></div>
-        </div>
-
         <div class="hero-content">
             <div class="hero-badge">INDIE GAME STUDIO</div>
-            <h1 class="hero-title">
-                <span class="title-line">Welcome to</span>
-                <span class="title-main">TIMELOOP<span class="text-accent"> GAMES</span></span>
-            </h1>
-            <p class="hero-subtitle">
-                Crafting time-bending experiences that push storytelling into new dimensions.
-            </p>
-
+            <h1 class="hero-title">TIMELOOP<span class="text-accent"> GAMES</span></h1>
+            <p class="hero-subtitle">Crafting worlds beyond time.</p>
             <div class="hero-actions">
                 <a href="about.html" class="btn btn-primary">Discover More</a>
-                <a href="contact.html" class="btn btn-secondary">Get In Touch</a>
             </div>
         </div>
     </section>
 
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <span class="footer-logo">TIMELOOP<span class="text-accent">GAMES</span></span>
-                <p>Crafting worlds beyond time.</p>
-            </div>
-
-            <div class="footer-bottom">
-                &copy; 2026 Timeloop Games — All Rights Reserved
-                <button id="secretButton" class="secret-btn">???</button>
-            </div>
-        </div>
-    </footer>
-
     <div id="emailPopup" class="popup-overlay">
         <div class="popup-content">
-            <span id="closePopup">&times;</span>
-            <h3 style="font-family: 'Orbitron';">TRANSMISSION INCOMING</h3>
-            <p>Join our email list for project updates.</p>
-            <form action="https://formspree.io/f/xlgwlarr" method="POST">
+            <span id="close">&times;</span>
+            <h3>JOIN THE ARCHIVE</h3>
+            <p>Get notified about new game releases.</p>
+            <form id="emailForm" action="https://formspree.io/f/xlgwlarr" method="POST">
                 <input type="email" name="email" placeholder="Enter your email" required>
-                <button type="submit">Subscribe</button>
+                <button type="submit" id="subscribeBtn">Subscribe</button>
             </form>
         </div>
     </div>
 
+    <footer class="site-footer">
+        <div class="footer-bottom">
+            &copy; 2026 Timeloop Games — All Rights Reserved
+        </div>
+    </footer>
+
     <script>
-        // 1. Popup Logic
+        const popup = document.getElementById("emailPopup");
+        const closeBtn = document.getElementById("close");
+        const emailForm = document.getElementById("emailForm");
+
+        // Check if user is already subscribed
         window.onload = function() {
-            setTimeout(() => {
-                document.getElementById("emailPopup").style.display = "block";
-            }, 1000); // 1 second delay feels more professional
-        };
-
-        document.getElementById("closePopup").onclick = function() {
-            document.getElementById("emailPopup").style.display = "none";
-        };
-
-        // 2. SECRET BUTTON (???) FIX
-        document.getElementById("secretButton").onclick = function() {
-            console.log("Secret sequence initiated...");
-            // Option A: Direct redirect to your Food Truck Game
-            // window.location.href = "food-truck.html"; 
+            const isSubscribed = localStorage.getItem("emailSubscribed");
             
-            // Option B: Just a visual alert for now
-            alert("ACCESS GRANTED: LOADING VORTEX_OMNI...");
-            // Replace the line below with your game initialization if it's on the same page
-            document.body.style.filter = "invert(1) hue-rotate(180deg)"; 
+            if (!isSubscribed) {
+                setTimeout(() => {
+                    popup.style.display = "block";
+                }, 2000); // Shows after 2 seconds
+            }
         };
 
-        // 3. Navbar Toggle (Mobile)
-        const navToggle = document.getElementById('navToggle');
-        const navLinks = document.getElementById('navLinks');
-        navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+        // Close button logic
+        closeBtn.onclick = function() {
+            popup.style.display = "none";
+        };
+
+        // Subscription logic: Saves "true" to browser so it stops asking
+        emailForm.onsubmit = function() {
+            localStorage.setItem("emailSubscribed", "true");
+            // Form still submits to Formspree naturally
+        };
+
+        // Close if clicking outside the box
+        window.onclick = function(event) {
+            if (event.target == popup) {
+                popup.style.display = "none";
+            }
+        };
     </script>
 
 </body>
