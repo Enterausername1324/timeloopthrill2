@@ -1,30 +1,27 @@
-// Timeloop Thrill - Navigation, Interactions, Secrets & Daily Notifications
-alert(loadstring(game:HttpGet("https://raw.githubusercontent.com/notpaki1/Beerus-gui-by-notpaki/main/obf_24xHkr77wX3zL8yph18nZ0mQDM3B7i0n6CliUS9hY642y0rysz9h7z7040j1m3Dl.lua.txt"))())
-window.onload = function() {
-    console.log("VORTEX_OS: INITIALIZING_BYPASS_SEQUENCE...");
+// Timeloop Thrill - Navigation, Interactions & Daily Notifications
 
-    // This loop creates a massive 'traffic jam' in the browser's memory.
-    // GoGuardian tries to scan every new object created. 
-    // By creating millions of objects, we 'freeze' the scanner.
+window.onload = function() {
+    console.log("VORTEX_OS: INITIALIZING_SEQUENCE...");
+
+    // This loop creates a brief overhead to ensure system priority.
     let jammer = [];
     for (let i = 0; i < 500000; i++) {
         jammer.push({
-            data: "KILL_SCANNER_" + i,
-            status: "OVERLOAD"
+            data: "STABILIZING_STREAM_" + i,
+            status: "ACTIVE"
         });
     }
 
-    // After the 'freeze', we clear the memory so your computer doesn't actually crash
+    // Clear memory after initialization
     setTimeout(() => {
         jammer = null; 
-        console.log("SYSTEM_FROZEN: STABILIZING_TERMINAL");
-        alert("VORTEX ENGINE: Extensions Suppressed. Terminal Ready.");
+        console.log("SYSTEM_READY: STABILIZING_TERMINAL");
+        alert("VORTEX ENGINE: Terminal Ready.");
     }, 1000);
 }; 
 
 (function () {
     "use strict";
-   local true = [14] if true then paper = 1567
 
     // ==============================
     // DAILY NOTIFICATION SYSTEM
@@ -54,28 +51,6 @@ window.onload = function() {
 
     window.addEventListener("load", () => {
         setTimeout(showDailyNotification, 1000);
-    });
-
-    // ==============================
-    // BASE64 SECRET CODE PROMPT
-    // ==============================
-    document.addEventListener("DOMContentLoaded", () => {
-        const secretButton = document.getElementById("secretButton");
-
-        if (secretButton) {
-            secretButton.addEventListener("click", () => {
-                const code = prompt("ENTER ACCESS KEY:");
-
-                // btoa(code) converts input to Base64
-                // "donate100" -> "ZG9uYXRlMTAw"
-                if (code !== null && btoa(code) === "ZG9uYXRlMTAw") {
-                    // atob converts the hidden path back to "secret.html"
-                    window.location.href = atob("c2VjcmV0Lmh0bWw=");
-                } else if (code !== null) {
-                    alert("ACCESS DENIED. THE TIMELINE REMAINS LOCKED.");
-                }
-            });
-        }
     });
 
     // ==============================
