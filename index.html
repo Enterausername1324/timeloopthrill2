@@ -1,142 +1,551 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timeloop Games | Home</title>
-    
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timeloop Games | Home</title>
+<meta name="description" content="Timeloop Games — an indie studio crafting time-bending worlds beyond imagination.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <style>
-        /* Modern Popup Styling */
-        .popup-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(8px);
-            z-index: 9999;
-        }
-        .popup-content {
-            background: #111;
-            color: white;
-            padding: 40px;
-            width: 90%;
-            max-width: 400px;
-            margin: 20vh auto;
-            border: 1px solid #00ffff;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
-        }
-        .popup-content h3 { font-family: 'Orbitron', sans-serif; color: #00ffff; margin-bottom: 15px; }
-        .popup-content input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            background: #222;
-            border: 1px solid #444;
-            color: white;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        .popup-content button {
-            width: 100%;
-            padding: 12px;
-            background: #00ffff;
-            color: #000;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-        .popup-content button:hover { background: #fff; box-shadow: 0 0 15px #fff; }
-        #close { float: right; cursor: pointer; color: #666; font-size: 20px; }
-    </style>
+  :root {
+    --white: #FFFFFF;
+    --gray-50: #F8F8F8;
+    --gray-100: #F0F0F0;
+    --gray-200: #E0E0E0;
+    --gray-400: #9E9E9E;
+    --gray-700: #3A3A3A;
+    --gray-900: #1A1A1A;
+    --orange: #FF6B1A;
+    --orange-dark: #E05510;
+    --orange-light: #FFF0E8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--gray-900);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4rem;
+    height: 72px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .nav-logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--gray-900);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--orange); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-700);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--orange); }
+  .nav-links a.active { color: var(--orange); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--white);
+    padding: 0 4rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    top: 50%;
+    right: -8%;
+    transform: translateY(-50%);
+    width: 600px;
+    height: 600px;
+    opacity: 0.06;
+    animation: slowspin 60s linear infinite;
+  }
+
+  @keyframes slowspin {
+    from { transform: translateY(-50%) rotate(0deg); }
+    to { transform: translateY(-50%) rotate(360deg); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1.5rem;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--orange);
+    border-radius: 2px;
+  }
+
+  .hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--gray-900);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 .accent { color: var(--orange); }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: var(--gray-700);
+    line-height: 1.7;
+    max-width: 500px;
+    margin-bottom: 2.5rem;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    background: var(--orange);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover {
+    background: var(--orange-dark);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    border: 1px solid var(--gray-200);
+    color: var(--gray-700);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    margin-left: 1rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--gray-700);
+    color: var(--gray-900);
+  }
+
+  /* SCROLL INDICATOR */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.4;
+  }
+
+  .scroll-indicator span {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray-700);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: var(--gray-700);
+    animation: scrollpulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollpulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+    50% { opacity: 1; transform: scaleY(1); }
+  }
+
+  /* MANIFESTO STRIP */
+  .manifesto {
+    background: var(--gray-900);
+    padding: 5rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .manifesto-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1.25rem;
+  }
+
+  .manifesto h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .manifesto-right p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.9;
+  }
+
+  /* PILLARS */
+  .pillars {
+    padding: 7rem 4rem;
+    background: var(--gray-50);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+
+  .section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 700;
+    color: var(--gray-900);
+    letter-spacing: -0.02em;
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--gray-200);
+    border: 1.5px solid var(--gray-200);
+  }
+
+  .pillar {
+    background: var(--white);
+    padding: 2.5rem;
+    transition: background 0.25s;
+  }
+
+  .pillar:hover { background: var(--orange-light); }
+
+  .pillar-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--orange);
+    margin-bottom: 1.5rem;
+  }
+
+  .pillar h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+
+  .pillar p {
+    font-size: 0.875rem;
+    font-weight: 300;
+    color: var(--gray-700);
+    line-height: 1.8;
+  }
+
+  /* NEWSLETTER */
+  .newsletter {
+    padding: 7rem 4rem;
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    border-top: 1px solid var(--gray-200);
+  }
+
+  .newsletter h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 700;
+    color: var(--gray-900);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .newsletter p {
+    font-size: 0.95rem;
+    color: var(--gray-400);
+    margin-top: 0.75rem;
+    font-weight: 300;
+  }
+
+  .email-form {
+    display: flex;
+    gap: 0;
+  }
+
+  .email-form input {
+    flex: 1;
+    padding: 0.9rem 1.25rem;
+    border: 1px solid var(--gray-200);
+    border-right: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: var(--gray-900);
+    background: var(--gray-50);
+    outline: none;
+    border-radius: 2px 0 0 2px;
+    transition: border-color 0.2s;
+  }
+
+  .email-form input::placeholder { color: var(--gray-400); }
+  .email-form input:focus { border-color: var(--orange); }
+
+  .email-form button {
+    padding: 0.9rem 1.75rem;
+    background: var(--orange);
+    border: none;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 0 2px 2px 0;
+    transition: background 0.2s;
+  }
+
+  .email-form button:hover { background: var(--orange-dark); }
+
+  /* FOOTER */
+  footer {
+    background: var(--gray-900);
+    padding: 3rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .footer-logo span { color: var(--orange); }
+
+  .footer-nav {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-nav a {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-nav a:hover { color: var(--orange); }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.25);
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; }
+    .hero { padding: 6rem 1.5rem 4rem; min-height: 100svh; }
+    .hero-bg { width: 340px; height: 340px; right: -10%; opacity: 0.04; }
+    .manifesto, .newsletter { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 1.5rem; }
+    .pillars { padding: 4rem 1.5rem; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 2rem; text-align: center; padding: 2.5rem 1.5rem; }
+    .footer-nav { justify-content: center; }
+  }
+</style>
 </head>
-
 <body>
 
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-                <span class="logo-text">TIMELOOP<span class="logo-accent">GAMES</span></span>
-            </a>
-            <div class="nav-links" id="navLinks">
-                <a href="index.html" class="nav-link active">Home</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="contact.html" class="nav-link">Contact</a>
-            </div>
-        </div>
-    </nav>
+<nav>
+  <a href="index.html" class="nav-logo">TIME<span>LOOP</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
 
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">INDIE GAME STUDIO</div>
-            <h1 class="hero-title">TIMELOOP<span class="text-accent"> GAMES</span></h1>
-            <p class="hero-subtitle">Crafting worlds beyond time.</p>
-            <div class="hero-actions">
-                <a href="about.html" class="btn btn-primary">Discover More</a>
-            </div>
-        </div>
-    </section>
+<section class="hero">
+  <!-- Animated clock ring -->
+  <svg class="hero-bg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="250" cy="250" r="230" fill="none" stroke="#FF6B1A" stroke-width="2"/>
+    <circle cx="250" cy="250" r="180" fill="none" stroke="#FF6B1A" stroke-width="1"/>
+    <circle cx="250" cy="250" r="130" fill="none" stroke="#FF6B1A" stroke-width="2"/>
+    <circle cx="250" cy="250" r="80" fill="none" stroke="#FF6B1A" stroke-width="1"/>
+    <!-- tick marks -->
+    <line x1="250" y1="20" x2="250" y2="45" stroke="#FF6B1A" stroke-width="3"/>
+    <line x1="480" y1="250" x2="455" y2="250" stroke="#FF6B1A" stroke-width="3"/>
+    <line x1="250" y1="480" x2="250" y2="455" stroke="#FF6B1A" stroke-width="3"/>
+    <line x1="20" y1="250" x2="45" y2="250" stroke="#FF6B1A" stroke-width="3"/>
+    <line x1="382" y1="62" x2="366" y2="78" stroke="#FF6B1A" stroke-width="1.5"/>
+    <line x1="438" y1="118" x2="422" y2="134" stroke="#FF6B1A" stroke-width="1.5"/>
+    <line x1="438" y1="382" x2="422" y2="366" stroke="#FF6B1A" stroke-width="1.5"/>
+    <line x1="382" y1="438" x2="366" y2="422" stroke="#FF6B1A" stroke-width="1.5"/>
+    <line x1="118" y1="438" x2="134" y2="422" stroke="#FF6B1A" stroke-width="1.5"/>
+    <line x1="62" y1="382" x2="78" y2="366" stroke="#FF6B1A" stroke-width="1.5"/>
+    <line x1="62" y1="118" x2="78" y2="134" stroke="#FF6B1A" stroke-width="1.5"/>
+    <line x1="118" y1="62" x2="134" y2="78" stroke="#FF6B1A" stroke-width="1.5"/>
+    <!-- hands -->
+    <line x1="250" y1="250" x2="250" y2="80" stroke="#FF6B1A" stroke-width="4" stroke-linecap="round"/>
+    <line x1="250" y1="250" x2="360" y2="250" stroke="#FF6B1A" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="250" cy="250" r="8" fill="#FF6B1A"/>
+  </svg>
 
-    <div id="emailPopup" class="popup-overlay">
-        <div class="popup-content">
-            <span id="close">&times;</span>
-            <h3>JOIN THE ARCHIVE</h3>
-            <p>Get notified about new game releases.</p>
-            <form id="emailForm" action="https://formspree.io/f/xlgwlarr" method="POST">
-                <input type="email" name="email" placeholder="Enter your email" required>
-                <button type="submit" id="subscribeBtn">Subscribe</button>
-            </form>
-        </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Indie Game Studio</div>
+    <h1>CRAFT<span class="accent">ING</span><br>WORLDS<br>BEYOND TIME</h1>
+    <p class="hero-sub">We build games that bend time, challenge memory, and linger long after the credits roll. Every world we make is one you'll carry with you.</p>
+    <a href="about.html" class="btn-primary">Discover Our Work</a>
+    <a href="contact.html" class="btn-ghost">Get in Touch</a>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<section class="manifesto">
+  <div>
+    <p class="manifesto-label">Our Philosophy</p>
+    <h2>Small team.<br>Big worlds.<br>No limits.</h2>
+  </div>
+  <div class="manifesto-right">
+    <p>We believe the best games come from a simple conviction: that time itself is the most interesting character in any story. Every mechanic we design, every world we build, asks the player to feel time differently — to loop, to remember, to discover what was always there.</p>
+  </div>
+</section>
+
+<section class="pillars">
+  <div class="section-header">
+    <span class="section-label">What Drives Us</span>
+    <h2 class="section-title">Three Pillars</h2>
+  </div>
+  <div class="pillars-grid">
+    <div class="pillar">
+      <p class="pillar-num">01</p>
+      <h3>Creative Vision</h3>
+      <p>We push boundaries in game design, blending narrative depth with innovative mechanics. No template. No formula. Just ideas chased to their edge.</p>
     </div>
+    <div class="pillar">
+      <p class="pillar-num">02</p>
+      <h3>Time-Bending Worlds</h3>
+      <p>Our signature style — games that play with time, memory, and the unexpected. Each project is a new way to make players feel the weight of a moment.</p>
+    </div>
+    <div class="pillar">
+      <p class="pillar-num">03</p>
+      <h3>Indie Spirit</h3>
+      <p>Small team, big ambition. We value creative freedom over convention, and personal stakes over safe bets. We build the games we want to play.</p>
+    </div>
+  </div>
+</section>
 
-    <footer class="site-footer">
-        <div class="footer-bottom">
-            &copy; 2026 Timeloop Games — All Rights Reserved
-        </div>
-    </footer>
+<section class="newsletter">
+  <div>
+    <p class="section-label" style="margin-bottom:1rem;">Stay in the Loop</p>
+    <h2>Join the Archive</h2>
+    <p>Be the first to know when new worlds open up.</p>
+  </div>
+  <div>
+    <div class="email-form">
+      <input type="email" placeholder="your@email.com">
+      <button type="submit">Subscribe</button>
+    </div>
+  </div>
+</section>
 
-    <script>
-        const popup = document.getElementById("emailPopup");
-        const closeBtn = document.getElementById("close");
-        const emailForm = document.getElementById("emailForm");
-
-        // Check if user is already subscribed
-        window.onload = function() {
-            const isSubscribed = localStorage.getItem("emailSubscribed");
-            
-            if (!isSubscribed) {
-                setTimeout(() => {
-                    popup.style.display = "block";
-                }, 2000); // Shows after 2 seconds
-            }
-        };
-
-        // Close button logic
-        closeBtn.onclick = function() {
-            popup.style.display = "none";
-        };
-
-        // Subscription logic: Saves "true" to browser so it stops asking
-        emailForm.onsubmit = function() {
-            localStorage.setItem("emailSubscribed", "true");
-            // Form still submits to Formspree naturally
-        };
-
-        // Close if clicking outside the box
-        window.onclick = function(event) {
-            if (event.target == popup) {
-                popup.style.display = "none";
-            }
-        };
-    </script>
+<footer>
+  <a href="index.html" class="footer-logo">TIME<span>LOOP</span> GAMES</a>
+  <ul class="footer-nav">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 Timeloop Games</span>
+</footer>
 
 </body>
 </html>
